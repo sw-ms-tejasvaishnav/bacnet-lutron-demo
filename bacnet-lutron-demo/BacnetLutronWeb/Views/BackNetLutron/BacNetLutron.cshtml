@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "LutronLightFloorController";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-confirm.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/css/Site.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-slider.min.css" rel="stylesheet" />
+    <link href="~/Content/css/RangeSlidar.css" rel="stylesheet" />
+    <link href="~/Content/css/LutronLightFloor.css" rel="stylesheet" />
+    <link href="~/Content/css/datatable.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
+</head>
+<html>
+
+
+<body>
+    @*<h2>LutronLightFloor</h2>*@
+    @*<div class="col-sm-12">
+
+            <div class="container col-sm-6 panel panel-warning">
+                <h4 class='panel-default bccolorwhite'>Devices</h4>
+                <div id="floorHtml">
+                </div>
+
+            </div>
+
+            <div class="container col-sm-5 panel panel-warning m-l-5">
+                <h4 class='panel-default bccolorwhite'>Lights</h4>
+                <div id="floorlight">
+                </div>
+            </div>
+        </div>*@
+    @*<div class="row">
+            <div class="col-sm-6 p-l-5">
+                <div class="container col-sm-12 panel panel-default panel-height">
+                    <h4 class='panel-default bccolorwhite'>Device Area</h4>
+                    <div class="panel-body">
+                        <div>
+                            <label class=" col-sm-3">
+                                Area
+                            </label>
+                            <select class="form-control col-sm-3" id="ddlArea">
+                                <option selected>--Select Area--</option>
+                                <option>Conference 4628A 1761035</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 p-l-5 panel-height">
+                <i class="fa fa-10x fa-lightbulb-o" aria-hidden="false"></i>
+            </div>
+        </div>*@
+
+    @*<div class="row">
+            <div class="col-sm-4 p-l-5">
+                <div class="container col-sm-12 panel panel-default panel-height">
+                    <h4 class='panel-default bccolorwhite'>Lighting Level</h4>
+                    <div class="panel-body">
+                        Adjust Light <input class="range-slider range-slider__range" type="range" id="floorSlidar" value="0" min="0" max="100">
+                        <span class="range-slider__value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 p-l-5">
+                <div class="container col-sm-12 panel panel-default panel-height">
+                    <h4 class='panel-default bccolorwhite'>Lighting State</h4>
+                    <div class="panel-body">
+
+                        <input type="checkbox" checked data-toggle="toggle">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 p-l-5">
+                <div class="container col-sm-12 panel panel-default panel-height">
+                    <h4 class='panel-default bccolorwhite'>Lighting scene</h4>
+                    <div class="panel-body">
+                        <div>
+                            <label class=" col-sm-3">
+                                Scene
+                            </label>
+                            <select class="form-control col-sm-3" id="ddlScene">
+                                <option selected>--Select Scene--</option>
+                                <option>Off</option>
+                                <option>Full On</option>
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                                <option>High 1</option>
+                                <option>VTC</option>
+                                <option>Low 1</option>
+                                <option>Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="col-sm-8">
+                    <form>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Device</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option selected>--Select Device--</option>
+                                    <option>Conference 4628A 1761035</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelLg" class="col-sm-3 col-form-label col-form-label-lg">Lighting Scene</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="ddllightScene">
+                                    <option selected>--Select Scene--</option>
+                                    <option value="Off">Off</option>
+                                    <option value="Full$20On">Full On</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                    <option value="High$201">High 1</option>
+                                    <option value="VTC">VTC</option>
+                                    <option value="Low$201">Low 1</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabel" class="col-sm-3 col-form-label">Lighting Level</label>
+                            @*<div class="col-sm-6 range-slider">*@
+                            <input class="range-slider range-slider__range" type="range" id="floorSlidar1" value="0" min="0" max="100" width:"0px;">
+                            <span class="range-slider__value">0</span>
+                            @*</div>*@
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelLg" class="col-sm-3 col-form-label col-form-label-lg">Lighting State</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" checked data-toggle="toggle">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fa fa-10x fa-lightbulb-o" aria-hidden="false"></i>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn-sm btnsearchstyle" id="btnRefresh">
+                        <i class="fa fa-refresh" aria-hidden="true">&nbsp; Refresh</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/datatable.min.js"></script>
+<script src="~/Scripts/jquery-confirm.js"></script>
+<script src="~/Scripts/bootstrap-toggle.min.js"></script>
+
+
+<script src="~/Content/Script/Pages/LutronLightFloor.js"></script>
+
+
+<script src="~/Content/Script/Pages/LutronLightFloorNew.js"></script>

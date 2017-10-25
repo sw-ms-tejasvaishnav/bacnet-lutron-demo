@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BackNet_LutronModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BACnetDeviceMapping">
+          <Key>
+            <PropertyRef Name="bacnet_device_mapping_id" />
+          </Key>
+          <Property Name="bacnet_device_mapping_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_id" Type="int" />
+          <Property Name="object_instance" Type="int" />
+          <Property Name="floor_id" Type="int" />
+          <Property Name="suite_id" Type="int" />
+          <Property Name="room_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BACnetDevices">
+          <Key>
+            <PropertyRef Name="bacnet_device_id" />
+          </Key>
+          <Property Name="bacnet_device_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="network_id" Type="varchar" MaxLength="100" />
+          <Property Name="device_id" Type="int" />
+          <Property Name="object_type" Type="varchar" MaxLength="500" />
+          <Property Name="object_instance" Type="int" />
+          <Property Name="object_name" Type="varchar" MaxLength="500" />
+          <Property Name="routed_source" Type="varchar" MaxLength="100" />
+          <Property Name="routed_net" Type="int" />
+        </EntityType>
+        <EntityContainer Name="BackNet_LutronModelStoreContainer">
+          <EntitySet Name="BACnetDeviceMapping" EntityType="Self.BACnetDeviceMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BACnetDevices" EntityType="Self.BACnetDevices" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BackNet_LutronModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BACnetDevice">
+          <Key>
+            <PropertyRef Name="bacnet_device_id" />
+          </Key>
+          <Property Name="bacnet_device_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="network_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="device_id" Type="Int32" />
+          <Property Name="object_type" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="object_instance" Type="Int32" />
+          <Property Name="object_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="routed_source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="routed_net" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="BackNet_LutronEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BACnetDevices" EntityType="Self.BACnetDevice" />
+          <EntitySet Name="BACnetDeviceMappings" EntityType="BackNet_LutronModel.BACnetDeviceMapping" />
+        </EntityContainer>
+        <EntityType Name="BACnetDeviceMapping">
+          <Key>
+            <PropertyRef Name="bacnet_device_mapping_id" />
+          </Key>
+          <Property Name="bacnet_device_mapping_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="Int32" />
+          <Property Name="object_instance" Type="Int32" />
+          <Property Name="floor_id" Type="Int32" />
+          <Property Name="suite_id" Type="Int32" />
+          <Property Name="room_id" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BackNet_LutronModelStoreContainer" CdmEntityContainer="BackNet_LutronEntities">
+          <EntitySetMapping Name="BACnetDevices">
+            <EntityTypeMapping TypeName="BackNet_LutronModel.BACnetDevice">
+              <MappingFragment StoreEntitySet="BACnetDevices">
+                <ScalarProperty Name="bacnet_device_id" ColumnName="bacnet_device_id" />
+                <ScalarProperty Name="network_id" ColumnName="network_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="object_type" ColumnName="object_type" />
+                <ScalarProperty Name="object_instance" ColumnName="object_instance" />
+                <ScalarProperty Name="object_name" ColumnName="object_name" />
+                <ScalarProperty Name="routed_source" ColumnName="routed_source" />
+                <ScalarProperty Name="routed_net" ColumnName="routed_net" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BACnetDeviceMappings">
+            <EntityTypeMapping TypeName="BackNet_LutronModel.BACnetDeviceMapping">
+              <MappingFragment StoreEntitySet="BACnetDeviceMapping">
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="suite_id" ColumnName="suite_id" />
+                <ScalarProperty Name="floor_id" ColumnName="floor_id" />
+                <ScalarProperty Name="object_instance" ColumnName="object_instance" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="bacnet_device_mapping_id" ColumnName="bacnet_device_mapping_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
