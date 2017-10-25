@@ -1,7 +1,18 @@
 ﻿
 var deviceId = '1761035';
+$(document).ready(function () {
+    debugger;
+    StartBacknetProtocol();
+});
 
-debugger;
+//Start backnet service.
+function StartBacknetProtocol() {
+    $.post("api/ObixBacNet/StartBackNetProtocol", function () {
+
+    }).success(function () {
+        
+    });
+}
 
 $('#exampleFormControlSelect1').on('change', function () {
 
