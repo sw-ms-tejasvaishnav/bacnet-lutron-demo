@@ -1,17 +1,7 @@
 ﻿
 var deviceId = '1761035';
 
-//$(document).ready(function () {
-//    StartBackNetProtocol();
-//});
-
-//function StartBackNetProtocol() {
-//    $.post("api/LutronLightFloor/StartBackNetProtocol", function () {
-
-//    }).success(function () {
-//        alert("success");
-//    });
-//}
+debugger;
 
 $('#exampleFormControlSelect1').on('change', function () {
 

@@ -9,7 +9,7 @@ namespace BACKnetLutron.Controllers
     public class BACnetLutronController : Controller
     {  
         
-        public ActionResult BacNetLutron()
+        public ActionResult BacNetLutronUi()
         {
             ViewBag.Title = "Home Page";
             return View();

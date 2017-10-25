@@ -1,0 +1,102 @@
+﻿.floorLable {
+    border-ra: 10px;
+    width: 27px;
+    margin-bottom: 4px;
+    
+}
+
+.bccolorwhite{
+    background-color:white;
+}
+.bccolorgray {
+    background-color: gray;
+}
+.pointernone{
+    cursor:none;
+    pointer-events:none
+}
+.colorwhite{
+    color:white;
+}
+.margin-right5 {
+    margin-right: 5px;
+}
+.mtop2{
+    margin-top:2px !important;
+}
+.ml78px {
+    margin-left: 78px !important;
+}
+.textaligncenter{
+    text-align:center !important;
+}
+.wd60 {
+    width: 60% !important;
+}
+.m-r-3{
+    margin-right:3px !important;
+}
+
+.panel-body {
+    padding: 3px;
+    padding-left: 0px;
+}
+
+.panel-height {
+    height:120px;
+}
+
+.wd142px {
+    width: 116px !important;
+}
+
+.wd31px {
+    width: 31px;
+}
+
+.wd120px {
+    width: 120px !important;
+}
+.clryellow{
+    color:yellowgreen;
+}
+.clrBlack{
+    color:black;
+}
+.m-l-5{
+    margin-left:5px;
+}
+.p-l-5 {
+    padding-left: 5px;
+}
+
+.txtalignright {
+    text-align: right;
+}
+
+td.details-control {
+    background: url('../Images/details_open.png') no-repeat center center !important;
+    cursor: pointer;
+    
+}
+tr.shown td.details-control {
+    background: url('../Images/details_close.png') no-repeat center center !important;
+}
+
+.displaynone{
+    display:none;
+}
+
+.modal-header .close {
+    margin-top: -25px !important;
+}
+
+.modal-backdrop {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #000000;
+}

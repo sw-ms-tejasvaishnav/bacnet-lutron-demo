@@ -16,7 +16,7 @@ namespace BacnetLutronWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "BACnetLutron", action = "BacNetLutron", id = UrlParameter.Optional }
+                defaults: new { controller = "BACnetLutron", action = "BacNetLutronUi", id = UrlParameter.Optional }
             );
         }
     }

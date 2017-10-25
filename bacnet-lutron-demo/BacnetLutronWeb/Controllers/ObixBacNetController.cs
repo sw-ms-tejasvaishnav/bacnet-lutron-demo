@@ -1,4 +1,5 @@
 ﻿using BACKnetLutron.BusinessEntities;
+using BACKnetLutron.BusinessEntities.Common_Constant;
 using BACKnetLutron.BusinessEntities.Obix;
 using BACKnetLutron.Services;
 using BacnetLutronWeb.BackNet;
@@ -88,6 +89,43 @@ namespace BACKnetLutron.Controllers
         }
 
 
+        [HttpPost]
+        [Route("SetLightingScene")]
+        public IHttpActionResult SetLightingScene(LightSceneEntity lightscene)
+        {
+            LightSceneEntity lightScenetemp = new LightSceneEntity();
+            lightscene.Value = EnumConstants.GetEnumValueFromDescription<LightSceneEnum>(lightscene.LightScene).ToString();
+            var lightScene = BackNetReadAction.SetConfLightScene(lightscene);
+            var lightLevel = BackNetReadAction.GetConfLightLevel(lightscene.DeviceID);
+            var deviceDetail = new DeviceDetailEnity
+            {
+                DeviceID = lightScene.DeviceID,
+                LightScene = lightScene.LightScene,
+                LightSceneValue = lightScene.Value,
+                LightLevel = lightLevel.LightLevel,
+                //LightState = lightState.LightState
+            };
+            return Ok(deviceDetail);
+        }
+
+
+        [HttpPost]
+        [Route("SetLightingLevel")]
+        public IHttpActionResult SetLightingLevel(LightLevelEntity lightLevel)
+        {
+            LightSceneEntity lightScenetemp = new LightSceneEntity();
+            var deviceLightLevel = BackNetReadAction.SetConfLightLevel(lightLevel);
+            var lightScene = BackNetReadAction.GetConfLightingScene(lightLevel.DeviceID);
+            var deviceDetail = new DeviceDetailEnity
+            {
+                DeviceID = lightScene.DeviceID,
+                LightScene = lightScene.LightScene,
+                LightSceneValue = lightScene.Value,
+                LightLevel = deviceLightLevel.LightLevel,
+                //LightState = lightState.LightState
+            };
+            return Ok(deviceDetail);
+        }
         #endregion
     }
 }

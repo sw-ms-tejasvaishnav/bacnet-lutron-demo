@@ -56,14 +56,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Flurl">
-      <HintPath>..\..\..\obix-integration\Obix_JACE_V1\Obix_JACE_V1\bin\Flurl.dll</HintPath>
+      <HintPath>..\..\..\obix-integration-master\LutronQuantum\dll\Flurl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NetBIX.oBIX.Client">
-      <HintPath>..\..\..\obix-integration\Obix_JACE_V1\Obix_JACE_V1\bin\NetBIX.oBIX.Client.dll</HintPath>
+      <HintPath>..\..\..\obix-integration-master\LutronQuantum\dll\NetBIX.oBIX.Client.dll</HintPath>
     </Reference>
     <Reference Include="PacketDotNet, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PacketDotNet.0.13.0\lib\net\PacketDotNet.dll</HintPath>
@@ -126,6 +126,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -173,16 +176,18 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BackNet\BackNetClientInit.cs" />
     <Compile Include="BackNet\BacNetAction\BacNetService.cs" />
     <Compile Include="BackNet\BacNetAction\BackNetReadAction.cs" />
     <Compile Include="BackNet\BacNetAction\BackNetWriteAction.cs" />
+    <Compile Include="Controllers\ObixBacNetController.cs" />
+    <Compile Include="Models\BacNetEntities\Common Constant\CommonConstant.cs" />
+    <Compile Include="Models\BacNetEntities\Common Constant\EnumConstants.cs" />
     <Compile Include="Obix\ObixAction\ObixReadAction.cs" />
     <Compile Include="Controllers\BACnetLutronController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ObixJACEBacnetController.cs" />
     <Compile Include="DataModal\BackNetLutron.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -216,8 +221,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap-toggle.min.css" />
+    <Content Include="Content\css\bootstrap-slider.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\LutronLightFloor.css" />
+    <Content Include="Content\css\RangeSlidar.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\Script\Pages\ObixBacNet.js" />
     <Content Include="DataModal\BackNetLutron.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BackNetLutron.Context.cs</LastGenOutput>
@@ -231,7 +245,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -244,6 +257,11 @@
     <Content Include="DataModal\BackNetLutron.edmx.diagram">
       <DependentUpon>BackNetLutron.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -266,11 +284,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\BackNetLutron\LutronLightFloorNew.cshtml" />
-    <Content Include="Views\BackNetLutron\JACEBacnet.cshtml" />
+    <Content Include="Views\BacNetLutron\BacNetLutronUi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="WebActivatorEx\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
