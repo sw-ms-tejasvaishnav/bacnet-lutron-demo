@@ -55,16 +55,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Flurl">
-      <HintPath>..\..\..\obix-integration-master\LutronQuantum\dll\Flurl.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NetBIX.oBIX.Client">
-      <HintPath>..\..\..\obix-integration-master\LutronQuantum\dll\NetBIX.oBIX.Client.dll</HintPath>
-    </Reference>
     <Reference Include="PacketDotNet, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PacketDotNet.0.13.0\lib\net\PacketDotNet.dll</HintPath>
     </Reference>
@@ -183,10 +177,9 @@
     <Compile Include="BackNet\BacNetAction\BacNetService.cs" />
     <Compile Include="BackNet\BacNetAction\BackNetReadAction.cs" />
     <Compile Include="BackNet\BacNetAction\BackNetWriteAction.cs" />
-    <Compile Include="Controllers\ObixBacNetController.cs" />
+    <Compile Include="Controllers\BacNetController.cs" />
     <Compile Include="Models\BacNetEntities\Common Constant\CommonConstant.cs" />
     <Compile Include="Models\BacNetEntities\Common Constant\EnumConstants.cs" />
-    <Compile Include="Obix\ObixAction\ObixReadAction.cs" />
     <Compile Include="Controllers\BACnetLutronController.cs" />
     <Compile Include="DataModal\BackNetLutron.Context.cs">
       <AutoGen>True</AutoGen>
@@ -217,7 +210,6 @@
     <Compile Include="Models\BacNetEntities\LutronFloorObjectType.cs" />
     <Compile Include="Models\BacNetEntities\LutronObjectType.cs" />
     <Compile Include="Models\ObixEntities\ObixEntity.cs" />
-    <Compile Include="Obix\ObixClientInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,12 +218,13 @@
     <Content Include="Content\css\bootstrap-slider.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\Loader.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\css\LutronLightFloor.css" />
     <Content Include="Content\css\RangeSlidar.css" />
     <Content Include="Content\css\Site.css" />
-    <Content Include="Content\Script\Pages\ObixBacNet.js" />
+    <Content Include="Content\Script\Pages\BacNet.js" />
     <Content Include="DataModal\BackNetLutron.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BackNetLutron.Context.cs</LastGenOutput>

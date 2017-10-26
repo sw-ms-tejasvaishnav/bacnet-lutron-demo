@@ -98,12 +98,12 @@ namespace BacnetLutronWeb.BacNetAction
                 (uint)LutronObjectType.Lighting_Scene), BacnetPropertyIds.PROP_PRESENT_VALUE, out bacnetValueList);
 
             
-            var lightLevelelement = ObixReadAction.ReadLightScene();
+            //var lightLevelelement = ObixReadAction.ReadLightScene();
 
-            if (lightLevelelement != null)
-            {
-                lightSceneEntity.LightScene = lightLevelelement.Attribute("val").Value;
-            }
+            //if (lightLevelelement != null)
+            //{
+            //    lightSceneEntity.LightScene = lightLevelelement.Attribute("val").Value;
+            //}
 
 
             if (bacnetValueList != null && bacnetValueList.Count > 0)

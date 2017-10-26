@@ -14,12 +14,12 @@ using System.Web.Http;
 
 namespace BACKnetLutron.Controllers
 {
-    [RoutePrefix("api/ObixBacNet")]
-    public class ObixBacNetController : System.Web.Http.ApiController
+    [RoutePrefix("api/BacNet")]
+    public class BacNetController : System.Web.Http.ApiController
     {
 
         #region Coustructor
-        public ObixBacNetController()
+        public BacNetController()
         {
         }
         #endregion

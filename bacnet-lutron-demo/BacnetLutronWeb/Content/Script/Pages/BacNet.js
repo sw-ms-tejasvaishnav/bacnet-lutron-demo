@@ -2,15 +2,16 @@
 var deviceId = '1761035';
 $(document).ready(function () {
     debugger;
+    $("#loader").removeClass('displaynone');
     StartBacknetProtocol();
 });
 
 //Start backnet service.
 function StartBacknetProtocol() {
-    $.post("api/ObixBacNet/StartBackNetProtocol", function () {
+    $.post("api/BacNet/StartBackNetProtocol", function () {
 
     }).success(function () {
-        
+        $("#loader").addClass('displaynone');
     });
 }
 
@@ -24,7 +25,8 @@ $('#exampleFormControlSelect1').on('change', function () {
 
 function GetDeviceDetails(selectedValue) {
     //var deviceId = '1761035';
-    $.get("api/ObixBacNet/GetDeviceDetails/" + deviceId, function (deviceDetail) {
+    $("#loader").removeClass('displaynone');
+    $.get("api/BacNet/GetDeviceDetails/" + deviceId, function (deviceDetail) {
         var detail = deviceDetail;
     }).success(function (detail) {
         SetLightStatus(detail);
@@ -57,7 +59,7 @@ function SetLightingScene(selectedValue) {
         DeviceID: deviceId,
         LightScene: selectedValue
     }
-    $.post("api/ObixBacNet/SetLightingScene/", lightscene, function (deviceDetail) {
+    $.post("api/BacNet/SetLightingScene/", lightscene, function (deviceDetail) {
         var detail = deviceDetail;
     }).success(function (detail) {
         SetLightStatus(detail);
@@ -71,7 +73,7 @@ function SetLightingLevel(selectedValue, deviceId) {
         DeviceID: deviceId,
         LightLevel: selectedValue
     }
-    $.post("api/ObixBacNet/SetLightingLevel/", lightLevel, function (deviceDetail) {
+    $.post("api/BacNet/SetLightingLevel/", lightLevel, function (deviceDetail) {
         var detail = deviceDetail;
     }).success(function (detail) {
         SetLightStatus(detail);
@@ -92,6 +94,7 @@ function SetSlidarValue(cLightLevel, deviceId) {
     }
     $('input[type="range"]').val(cLightLevel).change();
     $(".range-slider__value").html(cLightLevel);
+    $("#loader").addClass('displaynone');
 }
 
 function SetLightStatus(deviceDetail) {
