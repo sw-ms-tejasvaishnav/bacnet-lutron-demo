@@ -209,7 +209,7 @@
     <Compile Include="Models\BacNetEntities\BackNetDeviceModel.cs" />
     <Compile Include="Models\BacNetEntities\LutronFloorObjectType.cs" />
     <Compile Include="Models\BacNetEntities\LutronObjectType.cs" />
-    <Compile Include="Models\ObixEntities\ObixEntity.cs" />
+    <Compile Include="Models\BacNetEntities\BacNetEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

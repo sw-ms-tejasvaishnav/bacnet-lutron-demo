@@ -1,9 +1,20 @@
 ﻿
 var deviceId = '1761035';
 $(document).ready(function () {
-    debugger;
+
     $("#loader").removeClass('displaynone');
-    StartBacknetProtocol();
+    //StartBacknetProtocol();
+    RangeSlider();
+    BindDeviceDetai();
+
+    $('#ddllightScene').on('change', function () {
+
+        var selectedValue = $('#ddllightScene').val();
+        if (selectedValue != 0) {
+            $("#loader").removeClass('displaynone');
+            SetLightingScene(selectedValue);
+        }
+    });
 });
 
 //Start backnet service.
@@ -11,8 +22,16 @@ function StartBacknetProtocol() {
     $.post("api/BacNet/StartBackNetProtocol", function () {
 
     }).success(function () {
-        $("#loader").addClass('displaynone');
+
     });
+}
+
+function BindDeviceDetai() {
+    $("#loader").addClass('displaynone');
+    var selectedValue = $('#exampleFormControlSelect1').val();
+    if (selectedValue != 0) {
+        GetDeviceDetails(selectedValue);
+    }
 }
 
 $('#exampleFormControlSelect1').on('change', function () {
@@ -33,13 +52,7 @@ function GetDeviceDetails(selectedValue) {
     });
 }
 
-$('#ddllightScene').on('change', function () {
 
-    var selectedValue = $('#ddllightScene').val();
-    if (selectedValue != 0) {
-        SetLightingScene(selectedValue);
-    }
-});
 
 $('#floorSlidar1').on('change', function () {
     var selectedValue = this.value;
@@ -53,8 +66,7 @@ $('#btnRefresh').on('click', function () {
 });
 
 function SetLightingScene(selectedValue) {
-    //  var deviceId = '1761035';
-    alert(selectedValue);
+
     var lightscene = {
         DeviceID: deviceId,
         LightScene: selectedValue
@@ -67,8 +79,7 @@ function SetLightingScene(selectedValue) {
 }
 
 function SetLightingLevel(selectedValue, deviceId) {
-    //  var deviceId = '1761035';
-    //   alert(selectedValue);
+
     var lightLevel = {
         DeviceID: deviceId,
         LightLevel: selectedValue
@@ -81,24 +92,49 @@ function SetLightingLevel(selectedValue, deviceId) {
 }
 
 function SetSlidarValue(cLightLevel, deviceId) {
-    if (cLightLevel != 0) {
-        $(".basecolor" + deviceId).css({ "background-color": "hsl(0," + cLightLevel + "%," + "88%)" })
-    }
-    else {
-        var cFloor = 1;
-        for (var i = 0; i < totalFloor.length; i++) {
-            $(".basecolor" + cFloor).css({ "background-color": "lightgray" })
-            cFloor++;
-        }
 
-    }
-    $('input[type="range"]').val(cLightLevel).change();
+    $("#lightLevel").css({ "color": "hsl(43," + parseInt(cLightLevel) + "%," + "57%)" })
+
+
+
+    $('input[type="range"]').val(cLightLevel);
     $(".range-slider__value").html(cLightLevel);
     $("#loader").addClass('displaynone');
 }
 
 function SetLightStatus(deviceDetail) {
     $('#ddllightScene').val(deviceDetail.LightScene);
-    // document.getElementById("ddllightScene").value = deviceDetail.LightScene;
+    document.getElementById("ddllightScene").value = deviceDetail.LightSceneValue;
     SetSlidarValue(deviceDetail.LightLevel, deviceDetail.DeviceID);
 }
+
+
+var RangeSlider = function () {
+    var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
+
+    slider.each(function () {
+
+        value.each(function () {
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+
+        });
+
+        range.on('input', function () {
+
+            $(this).next(value).html(this.value);
+            $("#lightLevel").css({ "color": "hsl(43," + this.value + "%," + "57%)" })
+        });
+
+        range.on("change", function (event, ui) {
+            $("#loader").removeClass('displaynone');
+
+            var selectedValue = this.value;
+            SetLightingLevel(selectedValue, deviceId);
+
+
+        });
+    });
+};

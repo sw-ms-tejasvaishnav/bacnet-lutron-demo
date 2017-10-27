@@ -42,7 +42,15 @@ namespace BacnetLutronWeb.BackNet
         }
 
 
-     
+
+
+        public static BacnetClient NewBackNetClient()
+        {
+            BacnetIpUdpProtocolTransport newPort = new BacnetIpUdpProtocolTransport(0xBAC0, false);
+            bacNetClient = new BacnetClient(newPort);
+            bacNetClient.Start();
+            return bacNetClient;
+        }
 
 
     }

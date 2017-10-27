@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BACKnetLutron.BusinessEntities.Obix
+namespace BACKnetLutron.BusinessEntities.BacNetEntity
 {
     public class LightLevelEntity
     {

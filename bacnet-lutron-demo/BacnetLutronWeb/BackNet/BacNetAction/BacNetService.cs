@@ -45,13 +45,17 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
                         });   //// add it
                     }
                 }
-
                 if (bacNetDeviceModel.BACnetDeviceList.Count == 48)
                 {
-                     BacNetService.AddBackNetDeviceDetail();
+
+                    bacNetClient.OnIam -= new BacnetClient.IamHandler(BacNetService.Handler_OmIam);
+                    bacNetClient.OnWhoIs -= new BacnetClient.WhoIsHandler(BacNetService.handler_OnWhoIs);
+                    BacNetService.AddBackNetDeviceDetail();
                 }
+
             }
         }
+
 
 
         /// <summary>
@@ -78,18 +82,29 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
         /// <summary>
         /// Adds bacnet device details.
         /// </summary>
-        private static  void AddBackNetDeviceDetail()
+        private static void AddBackNetDeviceDetail()
         {
             if (bacNetDeviceModel != null && bacNetDeviceModel.BACnetDeviceList != null)
-            {               
+            {
                 List<BACnetDevice> bACnetDeviceLst = new List<BACnetDevice>();
                 List<BACnetDeviceMapping> bACnetDeviceMappingLst = new List<BACnetDeviceMapping>();
                 foreach (var deviceDetail in bacNetDeviceModel.BACnetDeviceList)
                 {
+
+
                     IList<BacnetValue> objValueLst;
+                    if (bacNetClient == null)
+                    {
+
+                        bacNetClient = BackNetClientInit.NewBackNetClient();
+                    }
                     bacNetClient.ReadPropertyRequest(deviceDetail.BacNetAddress,
                         new BacnetObjectId(BacnetObjectTypes.OBJECT_DEVICE, deviceDetail.DeviceId),
                         BacnetPropertyIds.PROP_OBJECT_LIST, out objValueLst);
+                    if (objValueLst == null)
+                    {
+                        continue;
+                    }
                     foreach (var objValue in objValueLst)
                     {
 
@@ -155,6 +170,7 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
                 {
                     AddBacNetMappingDetail(bACnetDeviceMappingLst);
                 }
+
             }
         }
 
@@ -171,7 +187,7 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
         /// Adds bacnet device details on start process.
         /// </summary>
         /// <param name="bacNetDeviceLst">Passes list of devices.</param>
-        public static async void AddBacNetDeviceDetail(List<BACnetDevice> bacNetDeviceLst)
+        public static void AddBacNetDeviceDetail(List<BACnetDevice> bacNetDeviceLst)
         {
             if (bacNetDeviceLst.Count() > 0)
             {
@@ -179,8 +195,8 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
                 {
                     dbContext.BACnetDevices.Add(bacNetDevice);
                 }
-                await dbContext.SaveChangesAsync();
-               // dbContext.SaveChanges();
+                //   await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
             }
         }
 
@@ -188,7 +204,7 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
         /// Adds bacnet mapping details on start process.
         /// </summary>
         /// <param name="bacNetDeviceMappingLst">Passes bacnet device mapping list.</param>
-        public static async void AddBacNetMappingDetail(List<BACnetDeviceMapping> bacNetDeviceMappingLst)
+        public static void AddBacNetMappingDetail(List<BACnetDeviceMapping> bacNetDeviceMappingLst)
         {
             if (bacNetDeviceMappingLst.Count() > 0)
             {
@@ -196,10 +212,11 @@ namespace BacnetLutronWeb.BackNet.BacNetAction
                 {
                     dbContext.BACnetDeviceMappings.Add(bacNetDeviceMap);
                 }
-                await dbContext.SaveChangesAsync();
-               // dbContext.SaveChanges();
+                // await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
             }
         }
+
 
 
     }

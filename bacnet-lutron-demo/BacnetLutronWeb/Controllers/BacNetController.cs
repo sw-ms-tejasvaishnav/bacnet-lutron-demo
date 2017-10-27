@@ -1,6 +1,6 @@
 ﻿using BACKnetLutron.BusinessEntities;
 using BACKnetLutron.BusinessEntities.Common_Constant;
-using BACKnetLutron.BusinessEntities.Obix;
+using BACKnetLutron.BusinessEntities.BacNetEntity;
 using BACKnetLutron.Services;
 using BacnetLutronWeb.BackNet;
 using BacnetLutronWeb.BacNetAction;
@@ -67,7 +67,7 @@ namespace BACKnetLutron.Controllers
         [Route("SetConfLightLevel")]
         public IHttpActionResult SetConfLightLevel(LightLevelEntity lightLevelEntity)
         {
-            var lightLevel = BackNetReadAction.SetConfLightLevel(lightLevelEntity);
+            var lightLevel = BackNetWriteAction.SetConfLightLevel(lightLevelEntity);
             return Ok(lightLevel);
         }
 
@@ -75,7 +75,7 @@ namespace BACKnetLutron.Controllers
         [Route("SetConfLightScene")]
         public IHttpActionResult SetConfLightScene(LightSceneEntity lightSceneEntity)
         {
-            var lightLevel = BackNetReadAction.SetConfLightScene(lightSceneEntity);
+            var lightLevel = BackNetWriteAction.SetConfLightScene(lightSceneEntity);
             return Ok(lightLevel);
         }
 
@@ -84,7 +84,7 @@ namespace BACKnetLutron.Controllers
         [Route("SetConfLightState")]
         public IHttpActionResult SetConfLightState(LightStateEntity lightStateEntity)
         {
-            var lightState = BackNetReadAction.SetConfLightState(lightStateEntity);
+            var lightState = BackNetWriteAction.SetConfLightState(lightStateEntity);
             return Ok(lightState);
         }
 
@@ -95,7 +95,7 @@ namespace BACKnetLutron.Controllers
         {
             LightSceneEntity lightScenetemp = new LightSceneEntity();
             lightscene.Value = EnumConstants.GetEnumValueFromDescription<LightSceneEnum>(lightscene.LightScene).ToString();
-            var lightScene = BackNetReadAction.SetConfLightScene(lightscene);
+            var lightScene = BackNetWriteAction.SetConfLightScene(lightscene);
             var lightLevel = BackNetReadAction.GetConfLightLevel(lightscene.DeviceID);
             var deviceDetail = new DeviceDetailEnity
             {
@@ -114,7 +114,7 @@ namespace BACKnetLutron.Controllers
         public IHttpActionResult SetLightingLevel(LightLevelEntity lightLevel)
         {
             LightSceneEntity lightScenetemp = new LightSceneEntity();
-            var deviceLightLevel = BackNetReadAction.SetConfLightLevel(lightLevel);
+            var deviceLightLevel = BackNetWriteAction.SetConfLightLevel(lightLevel);
             var lightScene = BackNetReadAction.GetConfLightingScene(lightLevel.DeviceID);
             var deviceDetail = new DeviceDetailEnity
             {
